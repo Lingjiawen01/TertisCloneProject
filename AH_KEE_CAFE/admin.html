@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-Eng">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ah Kee Cafe - Admin Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brandBg: '#f6f5f1',
+                        brandDark: '#1a1a1a',
+                        brandGold: '#8b8368',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-brandBg text-brandDark font-sans antialiased">
+
+    <nav class="w-full bg-white border-b border-gray-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            <div class="font-serif tracking-wider font-bold uppercase text-lg">
+                Ah Kee Cafe <span class="text-xs text-brandGold font-sans">/ Admin Dashboard</span>
+            </div>
+            <a href="Home.html" target="_blank" class="text-xs uppercase tracking-widest border border-brandDark px-4 py-2 hover:bg-brandDark hover:text-white transition">
+                View Frontend Page ↗
+            </a>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-6 lg:px-12 py-10 grid grid-cols-1 lg:grid-cols-12 gap-10">
+        
+        <section class="lg:col-span-5 bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-gray-200/60 space-y-6 h-fit">
+            <h2 class="text-lg font-serif uppercase tracking-wider border-b border-gray-100 pb-3">Add New Item</h2>
+            
+            <form id="add-item-form" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">Item Name</label>
+                    <input type="text" id="item-name" required placeholder="e.g., Sarawak Laksa" 
+                           class="w-full p-3 bg-brandBg/50 border border-gray-200 rounded-xl focus:outline-none focus:border-brandGold transition text-sm">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">Price (RM)</label>
+                    <input type="number" step="0.01" id="item-price" required placeholder="e.g., 22.00" 
+                           class="w-full p-3 bg-brandBg/50 border border-gray-200 rounded-xl focus:outline-none focus:border-brandGold transition text-sm">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">Item Category</label>
+                    <select id="item-category" class="w-full p-3 bg-brandBg/50 border border-gray-200 rounded-xl focus:outline-none focus:border-brandGold transition text-sm">
+                        <option value="food">Food (食物)</option>
+                        <option value="coffee">Coffee (咖啡)</option>
+                        <option value="tea">Tea (茶)</option>
+                        <option value="desserts">Desserts (甜品/冰)</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">Picture</label>
+                    <div class="relative flex items-center justify-between w-full p-3 bg-brandBg/50 border border-gray-200 rounded-xl hover:border-brandGold transition text-sm">
+                        <input type="file" id="item-image-file" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer">
+                        <span id="file-upload-text" class="text-gray-400">Click to choose a photo...</span>
+                        <span class="text-xs bg-brandDark text-white px-3 py-1 rounded-md font-sans">Browse</span>
+                    </div>
+                    <p class="text-[10px] text-gray-400 mt-1.5">💡 Hint: The selected image file must already exist inside your project's <code class="bg-gray-100 px-1 rounded text-brandGold font-bold">images/</code> folder.</p>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">Short Description</label>
+                    <input type="text" id="item-desc" placeholder="e.g., Authentic, Spicy, Satisfying." 
+                           class="w-full p-3 bg-brandBg/50 border border-gray-200 rounded-xl focus:outline-none focus:border-brandGold transition text-sm">
+                </div>
+
+                <button type="submit" class="w-full bg-brandGold text-white p-3 rounded-xl uppercase tracking-widest text-xs font-bold hover:bg-opacity-90 transition pt-4 shadow-sm">
+                    Confirm Add to Menu
+                </button>
+            </form>
+        </section>
+
+        <section class="lg:col-span-7 bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-gray-200/60 space-y-6">
+            <div class="flex justify-between items-center border-b border-gray-100 pb-3">
+                <h2 class="text-lg font-serif uppercase tracking-wider">Current Menu List</h2>
+                <span id="total-count" class="text-xs bg-brandBg px-2.5 py-1 rounded-full font-bold text-gray-500">Total: 0 Items</span>
+            </div>
+
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="border-b border-gray-100 text-xs uppercase tracking-wider text-gray-400">
+                            <th class="py-3 font-semibold">Item Information</th>
+                            <th class="py-3 font-semibold">Category</th>
+                            <th class="py-3 font-semibold text-right">Price</th>
+                            <th class="py-3 font-semibold text-center">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="menu-table-body" class="divide-y divide-gray-50 text-sm">
+                        </tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="admin.js"></script>
+</body>
+</html>
